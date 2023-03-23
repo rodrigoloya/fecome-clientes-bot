@@ -91,6 +91,7 @@ bot.on('message', (msg) => {
           Monto :$ ${infoAdicional}
           Fecha: ${new Date().toISOString()}`
         );
+    }
         else {
             bot.sendMessage(
                 msg.chat.id,
