@@ -1,8 +1,9 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // Reemplaza el token con el token de tu bot de Telegram
-console.log(process.env);
+//console.log(process.env);
 const token = process.env.telegram_token;
+
 
 // Crea el bot con el token
 const bot = new TelegramBot(token, { polling: true });
@@ -46,7 +47,7 @@ bot.on('message', (msg) => {
             ['Hotel Barbados', 'Ihop'],
           ],
           one_time_keyboard: true,
-        //  callback_data: 'servicio',
+          //callback_data: 'servicio',
         },
       }
     );
@@ -72,31 +73,24 @@ bot.on('message', (msg) => {
     }
     else if (step === 2){
 
-        // Almacena la información adicional proporcionada por el usuario en una variable
-        infoAdicional = msg.text;
-        step = -1;
-        if(infoAdicional && infoAdicional > 0)
-        // Envía un mensaje de confirmación al usuario con la información recopilada
-           bot.sendMessage(
-                msg.chat.id,
-                `Gracias por proporcionar la informacion. Ya puede reenviar el siguiente mensaje a su secretaria por telegram.`);
-      
-        bot.sendMessage(
-        msg.chat.id,
-         `Los datos del cliente  ${cliente} 
-          Razon Social : ${clienteDetalle.razonSocial }  
-          RFC : ${clienteDetalle.rfc } 
-          CTA : ${ clienteDetalle.cta} 
-          Banco : ${ clienteDetalle.banco}
-          Monto :$ ${infoAdicional}
-          Fecha: ${new Date().toISOString()}`
-        );
-    }
-        else {
-            bot.sendMessage(
-                msg.chat.id,
-                ` Gracias por utilizar el servicio hasta la proxima.`);
-        }
+       // Almacena la información adicional proporcionada por el usuario en una variable
+       infoAdicional = msg.text;
+       step = -1;
+       if(infoAdicional && infoAdicional > 0)
+       // Envía un mensaje de confirmación al usuario con la información recopilada
+          bot.sendMessage(
+               msg.chat.id,
+               `Gracias por proporcionar la informacion. Ya puede reenviar el siguiente mensaje a su secretaria por telegram.`);
+     
+       bot.sendMessage(
+       msg.chat.id,
+        `Los datos del cliente  ${cliente} 
+         Razon Social : ${clienteDetalle.razonSocial }  
+         RFC : ${clienteDetalle.rfc } 
+         CTA : ${ clienteDetalle.cta} 
+         Banco : ${ clienteDetalle.banco}
+         Monto :$ ${infoAdicional}
+         Fecha: ${new Date().toISOString()}`  );
         }
         else {
             bot.sendMessage(
@@ -130,7 +124,7 @@ bot.on('callback_query', function onCallbackQuery(callbackQuery) {
       text = 'Edited Text';
     }
   
-  //  bot.editMessageText(text, opts);
+   // bot.editMessageText(text, opts);
   });
 
   const clientes =  [
