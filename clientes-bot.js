@@ -19,7 +19,7 @@ bot.onText(/\/start/, (msg) => {
         ['Consultar Informacion', 'Registrar Deposito'],        
       ],
       one_time_keyboard: true,
-      callback_data: 'servicio',
+     // callback_data: 'servicio',
     },
   });
   step =0;
@@ -46,7 +46,7 @@ bot.on('message', (msg) => {
             ['Hotel Barbados', 'Ihop'],
           ],
           one_time_keyboard: true,
-          callback_data: 'servicio',
+        //  callback_data: 'servicio',
         },
       }
     );
@@ -77,10 +77,19 @@ bot.on('message', (msg) => {
         step = -1;
         if(infoAdicional && infoAdicional > 0)
         // Envía un mensaje de confirmación al usuario con la información recopilada
+           bot.sendMessage(
+                msg.chat.id,
+                `Gracias por proporcionar la informacion. Ya puede reenviar el siguiente mensaje a su secretaria por telegram.`);
+      
         bot.sendMessage(
         msg.chat.id,
-        ` Gracias por proporcionar la información. Se emitira tu factura para  ${cliente} con el monto  ${infoAdicional}
-        con fecha ${new Date().toISOString()}`
+         `Los datos del cliente  ${cliente} 
+          Razon Social : ${clienteDetalle.razonSocial }  
+          RFC : ${clienteDetalle.rfc } 
+          CTA : ${ clienteDetalle.cta} 
+          Banco : ${ clienteDetalle.banco}
+          Monto :$ ${infoAdicional}
+          Fecha: ${new Date().toISOString()}`
         );
         else {
             bot.sendMessage(
@@ -120,7 +129,7 @@ bot.on('callback_query', function onCallbackQuery(callbackQuery) {
       text = 'Edited Text';
     }
   
-    bot.editMessageText(text, opts);
+  //  bot.editMessageText(text, opts);
   });
 
   const clientes =  [
